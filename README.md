@@ -8,6 +8,7 @@ The Unreal Engine 5 MultiWindow Plugin enables the creation of external Slate wi
 - Host UMG widgets inside external windows.
 - Support for different dependency types, allowing windows to be tied to specific contexts such as the world or PIE (Play In Editor) sessions.
 - Specify sizing rules and support for window maximize and minimize actions.
+- Ability to shut down windows by title or object reference.
 
 ## Installation
 
@@ -41,6 +42,13 @@ UMW_Window* CreateMultiWindow(
 
 Initialize a Multi Window object using the `Init()` function. This sets up the window with the specified parameters and adds it to the Slate application. Call `Shutdown()` to clean up and remove the window.
 
+### Shutting Down Windows
+
+Users can shut down windows using the following functions:
+
+- `ShutdownWindowByName`: Tries to find an active window by its title and shuts it down.
+- `ShutdownWindowByObjectReference`: Directly shuts down a window by providing its object reference.
+
 ## Example
 
 ```cpp
@@ -60,8 +68,8 @@ UMW_Window* MyWindow = CreateMultiWindow(
 // Initialize the window
 MyWindow->Init();
 
-// Later, shutdown the window
-MyWindow->Shutdown();
+// Later, shutdown the window by title
+ShutdownWindowByName("My Window");
 ```
 
 ## License
