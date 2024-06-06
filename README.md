@@ -1,5 +1,5 @@
-```cpp
-/*
+```markdown
+<!--
 MIT License
 
 Copyright (c) DrElliot
@@ -21,28 +21,28 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+-->
 
 # Unreal Engine 5 Multi-Window Plugin
 
-The Unreal Engine 5 MultiWindow Plugin enables the creation of external Slate windows for use in both the editor and runtime environments. These windows can host custom user interface elements, providing flexibility and versatility in your Unreal Engine projects.
-
-## Features
-
-- Create external Slate windows with custom titles, sizes, and positions.
-- Host UMG widgets inside external windows.
-- Support for different dependency types, allowing windows to be tied to specific contexts such as the world or PIE (Play In Editor) sessions.
-- Specify sizing rules and support for window maximize and minimize actions.
-- Ability to shut down windows by title or object reference.
+The Unreal Engine 5 Multi-Window Plugin provides a convenient way to create and manage external Slate windows within your Unreal Engine projects. These windows can host custom user interfaces, enabling enhanced flexibility and interaction options.
 
 ![Multi Window Example](https://imgur.com/DCLo9Lx)
 ![Multi Window Example](https://imgur.com/btjW9MP)
 
+## Features
+
+- **External Slate Windows**: Create external windows with custom titles, sizes, and positions.
+- **UMG Widget Support**: Host UMG widgets inside external windows for enhanced user interactions.
+- **Dependency Types**: Tie windows to specific contexts such as the world or PIE (Play In Editor) sessions.
+- **Sizing Rules**: Specify sizing rules and support for window maximize and minimize actions.
+- **Shutdown Functionality**: Ability to shut down windows by title or object reference.
+
 ## Installation
 
-To install the MultiWindow Plugin in your Unreal Engine project, follow these steps:
+To install the Multi-Window Plugin in your Unreal Engine project, follow these steps:
 
-1. Download the plugin from the [GitHub repository](https://github.com/example/multiwindow-plugin).
+1. Download the plugin from the [GitHub repository](https://github.com/MrDrElliot/Multi-Window-Plugin).
 2. Extract the plugin folder into the "Plugins" directory of your Unreal Engine project.
 3. Enable the plugin in your project settings or by adding it to your project's `.uproject` file.
 
@@ -104,9 +104,9 @@ This plugin is provided under the [MIT License](LICENSE). Feel free to use and m
 
 ## Support
 
-If you encounter any issues or have suggestions for improvements, please [[submit an issue](https://github.com/example/multiwindow-plugin/issues)](https://github.com/MrDrElliot/Multi-Window-Plugin/issues). on GitHub.
+If you encounter any issues or have suggestions for improvements, please [submit an issue](https://github.com/MrDrElliot/Multi-Window-Plugin/issues) on GitHub.
 
 ---
 
-**Note:** Replace `example/multiwindow-plugin` with the actual GitHub repository URL for the MultiWindow Plugin.
+**Note:** Replace `MrDrElliot/Multi-Window-Plugin` with the actual GitHub repository URL for the Multi-Window Plugin.
 ```
