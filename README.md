@@ -1,4 +1,4 @@
-Got it. I'll incorporate the images into the README. Here's the revised version:
+Certainly! Here's the revised README with the updated information:
 
 # Unreal Engine 5 Multi-Window Plugin
 
@@ -29,7 +29,7 @@ To install the Multi-Window Plugin in your Unreal Engine project, follow these s
 
 Use the provided function `CreateMultiWindow` to create new Multi Windows with custom configurations. Here's an example of how to use the function:
 
-```markdown
+
 ```cpp
 UMW_Window* CreateMultiWindow(
     FName InTitle = "New Window",
