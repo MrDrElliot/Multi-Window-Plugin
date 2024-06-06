@@ -59,7 +59,7 @@ UMW_Window* MyWindow = CreateMultiWindow(
     EMultiWidgetDependencyType::World,
     FVector2D(100.0f, 100.0f),
     FVector2D(600.0f, 400.0f),
-    MyWorld,
+    nullptr, /* Only required for Object dependency */
     EBPSizingRule::FixedSize,
     true,
     true
