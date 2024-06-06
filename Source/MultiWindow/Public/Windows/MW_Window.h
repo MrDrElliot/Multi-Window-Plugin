@@ -21,6 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
+
 #pragma once
 
 #include "CoreMinimal.h"
@@ -44,6 +46,33 @@ public:
 	
 	UMW_Window();
 	~UMW_Window();
+
+
+	UFUNCTION(BlueprintPure)
+	FORCEINLINE bool HasUserWidget() const { return UserWidget.Get(); }
+
+	UFUNCTION(BlueprintPure)
+	FORCEINLINE FName GetWindowTitle() const { return WindowTitle; }
+
+	UFUNCTION(BlueprintPure)
+	FORCEINLINE FVector2D GetWindowPosition() const { return WindowPosition; }
+
+	UFUNCTION(BlueprintPure)
+	FORCEINLINE FVector2D GetWindowSize() const { return WindowSize; }
+
+	UFUNCTION(BlueprintPure)
+	FORCEINLINE bool SupportsMaximize() const { return bSupportsMaximize; }
+
+	UFUNCTION(BlueprintPure)
+	FORCEINLINE bool SupportsMinimize() const { return bSupportsMinimize; }
+
+	UFUNCTION(BlueprintPure)
+	FORCEINLINE EMultiWidgetDependencyType GetDependencyType() const { return DependencyType; }
+
+	UFUNCTION(BlueprintPure)
+	FORCEINLINE UObject* GetDependencyObject() const { return DependencyObject.Get(); }
+	
+	
 
 	//~ Begin FTickableGameObjectInterface
 	virtual bool IsTickable() const override { return true; }

@@ -24,7 +24,6 @@ SOFTWARE.
 
 #include "Windows/MW_Window.h"
 
-#include "Editor.h"
 #include "GameDelegates.h"
 #include "Blueprint/UserWidget.h"
 #include "Slate/SlateMultiWindow.h"
@@ -56,7 +55,7 @@ void UMW_Window::Tick(float DeltaTime)
 	{
 		if(DependencyObject.IsValid() == false)
 		{
-			 bCurrentlyShuttingDown = true;
+			bCurrentlyShuttingDown = true;
 			UMultiWindowSubsystem::Get()->NotifyWindowClosedExternally_Internal(this, true);
 		}
 	}
@@ -80,14 +79,6 @@ void UMW_Window::Init()
 
 	if(DependencyType == EMultiWidgetDependencyType::World)
 	{
-		FWorldDelegates::OnWorldBeginTearDown.AddWeakLambda(this, [this](UWorld* World)
-		{
-			UMultiWindowSubsystem::Get()->ShutdownWindowByObjectReference(this);
-		});
-	}
-
-	if(DependencyType == EMultiWidgetDependencyType::PIE)
-	{
 		FGameDelegates::Get().GetEndPlayMapDelegate().AddWeakLambda(this, [this]
 		{
 			UMultiWindowSubsystem::Get()->ShutdownWindowByObjectReference(this);
@@ -100,6 +91,7 @@ void UMW_Window::Init()
 void UMW_Window::Shutdown(bool bForced)
 {
 	bCurrentlyShuttingDown = true;
+	DependencyObject = nullptr;
 	
 	if(bForced == false)
 	{
@@ -120,6 +112,7 @@ void UMW_Window::AddWidgetToWindow(UUserWidget* InWidget)
 {
 	if (InWidget)
 	{
+		/* Give the widget this as an outer so the slate window can release it's resources */
 		InWidget->Rename(nullptr, this);
 		
 		/* Needed something to wrap around the user widget */

@@ -21,6 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
+
 #pragma once
 
 #include "CoreMinimal.h"
@@ -49,7 +51,6 @@ enum class EMultiWidgetDependencyType : uint8
 	Editor,
 	World,
 	Object,
-	PIE,
 };
 
 class UMW_Window;
@@ -83,9 +84,15 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintCosmetic)
 	UMW_Window* AddWidgetToWindow(UMW_Window* InWindow, UUserWidget* InWidget);
 
+	/* Checks if a window is currently registered and active */
 	UFUNCTION(BlueprintPure)
 	bool IsWindowActive(FName Name) const;
 
+	/* Gets all window objects */
+	UFUNCTION(BlueprintPure)
+	TArray<UMW_Window*> GetActiveWindows() const;
+
+public:
 
 	void NotifyWindowClosedExternally_Internal(const UMW_Window* Window, bool bForced);
 

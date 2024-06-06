@@ -92,6 +92,14 @@ bool UMultiWindowSubsystem::IsWindowActive(FName Name) const
 	return ActiveWindows.Contains(Name);
 }
 
+TArray<UMW_Window*> UMultiWindowSubsystem::GetActiveWindows() const
+{
+	TArray<UMW_Window*> Windows;
+	ActiveWindows.GenerateValueArray(Windows);
+
+	return Windows;
+}
+
 void UMultiWindowSubsystem::NotifyWindowClosedExternally_Internal(const UMW_Window* Window, bool bForced)
 {
 	ActiveWindows.Remove(Window->WindowTitle);
