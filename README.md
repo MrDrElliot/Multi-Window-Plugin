@@ -1,14 +1,12 @@
-I apologize for the oversight. Let me include the images in the README:
+Got it. I'll incorporate the images into the README. Here's the revised version:
 
----
-
+```markdown
 # Unreal Engine 5 Multi-Window Plugin
 
 The Unreal Engine 5 Multi-Window Plugin provides a convenient way to create and manage external Slate windows within your Unreal Engine projects. These windows can host custom user interfaces, enabling enhanced flexibility and interaction options.
 
-![Example of Multi Window 1](https://imgur.com/DCLo9Lx)
-
-![Example of Multi Window 2](https://imgur.com/btjW9MP)
+![Example of Multi Window 1](https://i.imgur.com/DCLo9Lx.png)
+![Example of Multi Window 2](https://i.imgur.com/btjW9MP.png)
 
 ## Features
 
@@ -57,27 +55,6 @@ Users can shut down windows using the following functions:
 - `ShutdownWindowByName`: Tries to find an active window by its title and shuts it down.
 - `ShutdownWindowByObjectReference`: Directly shuts down a window by providing its object reference.
 
-## Example
-
-```cpp
-// Create a new Multi Window
-UMW_Window* MyWindow = CreateMultiWindow(
-    "My Window", 
-    MyUserWidget, 
-    EMultiWidgetDependencyType::World,
-    FVector2D(100.0f, 100.0f),
-    FVector2D(600.0f, 400.0f),
-    nullptr, /* Only required for Object dependency */
-    EBPSizingRule::FixedSize,
-    true,
-    true
-);
-
-
-// Later, shutdown the window by title
-UMultiWindowSubsystem::Get()->ShutdownWindowByName("My Window");
-```
-
 ## License
 
 This plugin is provided under the [MIT License](LICENSE). Feel free to use and modify it in your projects.
@@ -85,5 +62,4 @@ This plugin is provided under the [MIT License](LICENSE). Feel free to use and m
 ## Support
 
 If you encounter any issues or have suggestions for improvements, please [submit an issue](https://github.com/MrDrElliot/Multi-Window-Plugin/issues) on GitHub.
-
----
+```
