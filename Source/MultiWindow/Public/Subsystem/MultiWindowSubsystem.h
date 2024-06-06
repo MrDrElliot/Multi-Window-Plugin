@@ -1,0 +1,77 @@
+// Copyright 2023 TheOtherSideGame. All Rights Reserved.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Subsystems/EngineSubsystem.h"
+#include "MultiWindowSubsystem.generated.h"
+
+DECLARE_LOG_CATEGORY_EXTERN(LogMultiWindow, Verbose, Verbose);
+
+UENUM(BlueprintType)
+enum class EBPSizingRule : uint8
+{
+	/* The windows size fixed and cannot be resized **/
+	FixedSize,
+
+	/** The window size is computed from its content and cannot be resized by users */
+	Autosized,
+
+	/** The window can be resized by users */
+	UserSized,
+};
+
+UENUM(BlueprintType)
+enum class EMultiWidgetDependencyType : uint8
+{
+	Engine,
+	Editor,
+	World,
+	Object,
+	PIE,
+};
+
+class UMW_Window;
+/**
+ * Create multiple slate widgets and apply UMG widgets to them, works in both editor and standalone.
+ */
+UCLASS()
+class MULTIWINDOW_API UMultiWindowSubsystem : public UEngineSubsystem
+{
+	GENERATED_BODY()
+
+public:
+
+	static UMultiWindowSubsystem* Get() { return GEngine->GetEngineSubsystem<UMultiWindowSubsystem>(); }
+
+	virtual void Deinitialize() override;
+
+	/* Creates a Multi Window and displays it*/
+	UFUNCTION(BlueprintCallable, BlueprintCosmetic, meta = (AdvancedDisplay = 4))
+	UMW_Window* CreateMultiWindow(FName InTitle = "New Window", UUserWidget* Widget = nullptr, EMultiWidgetDependencyType DependencyType = EMultiWidgetDependencyType::World, FVector2D WindowPosition = FVector2D(0.0f, 0.0f), FVector2D WindowSize = FVector2D(800.0f, 600.0f), UObject* DependencyObject = nullptr, EBPSizingRule SizingRule = EBPSizingRule::UserSized, bool bSupportsMaximize = true, bool bSupportsMinimize = true);
+
+	/* Tries to find an active window, and shuts it down */
+	UFUNCTION(BlueprintCallable, BlueprintCosmetic)
+	bool ShutdownWindowByName(FName WindowTitle);
+
+	/* Directly shuts down a window by object reference */
+	UFUNCTION(BlueprintCallable, BlueprintCosmetic)
+	bool ShutdownWindowByObjectReference(UMW_Window* Window);
+
+	/* Adds a UMG widget to a Multi Window */
+	UFUNCTION(BlueprintCallable, BlueprintCosmetic)
+	UMW_Window* AddWidgetToWindow(UMW_Window* InWindow, UUserWidget* InWidget);
+
+	UFUNCTION(BlueprintPure)
+	bool IsWindowActive(FName Name) const;
+
+
+	void NotifyWindowClosedExternally_Internal(const UMW_Window* Window, bool bForced);
+
+
+private:
+
+	UPROPERTY()
+	TMap<FName, UMW_Window*> ActiveWindows;
+	
+};
