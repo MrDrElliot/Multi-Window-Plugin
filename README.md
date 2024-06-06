@@ -1,5 +1,3 @@
-Certainly! Here's the revised README with the updated information:
-
 # Unreal Engine 5 Multi-Window Plugin
 
 The Unreal Engine 5 Multi-Window Plugin provides a convenient way to create and manage external Slate windows within your Unreal Engine projects. These windows can host custom user interfaces, enabling enhanced flexibility and interaction options.
