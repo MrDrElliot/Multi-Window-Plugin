@@ -1,4 +1,4 @@
-# Unreal Engine 5 MultiWindow Plugin
+# Unreal Engine 5 Multi-Window Plugin
 
 The Unreal Engine 5 MultiWindow Plugin enables the creation of external Slate windows for use in both the editor and runtime environments. These windows can host custom user interface elements, providing flexibility and versatility in your Unreal Engine projects.
 
@@ -65,11 +65,9 @@ UMW_Window* MyWindow = CreateMultiWindow(
     true
 );
 
-// Initialize the window
-MyWindow->Init();
 
 // Later, shutdown the window by title
-ShutdownWindowByName("My Window");
+UMultiWindowSubsystem::Get()->ShutdownWindowByName("My Window");
 ```
 
 ## License
