@@ -62,4 +62,3 @@ This plugin is provided under the [MIT License](LICENSE). Feel free to use and m
 ## Support
 
 If you encounter any issues or have suggestions for improvements, please [submit an issue](https://github.com/MrDrElliot/Multi-Window-Plugin/issues) on GitHub.
-```
