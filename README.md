@@ -1,20 +1,23 @@
-# Unreal Engine 5 MultiWindow Plugin
+# Unreal Engine 5 Multi-Window Plugin
 
-The Unreal Engine 5 MultiWindow Plugin enables the creation of external Slate windows for use in both the editor and runtime environments. These windows can host custom user interface elements, providing flexibility and versatility in your Unreal Engine projects.
+The Unreal Engine 5 Multi-Window Plugin provides a convenient way to create and manage external Slate windows within your Unreal Engine projects. These windows can host custom user interfaces, enabling enhanced flexibility and interaction options.
+
+![Example of Multi Window 1](https://i.imgur.com/DCLo9Lx.png)
+![Example of Multi Window 2](https://i.imgur.com/btjW9MP.png)
 
 ## Features
 
-- Create external Slate windows with custom titles, sizes, and positions.
-- Host UMG widgets inside external windows.
-- Support for different dependency types, allowing windows to be tied to specific contexts such as the world or PIE (Play In Editor) sessions.
-- Specify sizing rules and support for window maximize and minimize actions.
-- Ability to shut down windows by title or object reference.
+- **External Slate Windows**: Create external windows with custom titles, sizes, and positions.
+- **UMG Widget Support**: Host UMG widgets inside external windows for enhanced user interactions.
+- **Dependency Types**: Tie windows to specific contexts such as the world or PIE (Play In Editor) sessions.
+- **Sizing Rules**: Specify sizing rules and support for window maximize and minimize actions.
+- **Shutdown Functionality**: Ability to shut down windows by title or object reference.
 
 ## Installation
 
-To install the MultiWindow Plugin in your Unreal Engine project, follow these steps:
+To install the Multi-Window Plugin in your Unreal Engine project, follow these steps:
 
-1. Download the plugin from the [GitHub repository](https://github.com/example/multiwindow-plugin).
+1. Download the plugin from the [GitHub repository](https://github.com/MrDrElliot/Multi-Window-Plugin).
 2. Extract the plugin folder into the "Plugins" directory of your Unreal Engine project.
 3. Enable the plugin in your project settings or by adding it to your project's `.uproject` file.
 
@@ -23,6 +26,7 @@ To install the MultiWindow Plugin in your Unreal Engine project, follow these st
 ### Creating Multi Windows
 
 Use the provided function `CreateMultiWindow` to create new Multi Windows with custom configurations. Here's an example of how to use the function:
+
 
 ```cpp
 UMW_Window* CreateMultiWindow(
@@ -49,37 +53,10 @@ Users can shut down windows using the following functions:
 - `ShutdownWindowByName`: Tries to find an active window by its title and shuts it down.
 - `ShutdownWindowByObjectReference`: Directly shuts down a window by providing its object reference.
 
-## Example
-
-```cpp
-// Create a new Multi Window
-UMW_Window* MyWindow = CreateMultiWindow(
-    "My Window", 
-    MyUserWidget, 
-    EMultiWidgetDependencyType::World,
-    FVector2D(100.0f, 100.0f),
-    FVector2D(600.0f, 400.0f),
-    MyWorld,
-    EBPSizingRule::FixedSize,
-    true,
-    true
-);
-
-// Initialize the window
-MyWindow->Init();
-
-// Later, shutdown the window by title
-ShutdownWindowByName("My Window");
-```
-
 ## License
 
 This plugin is provided under the [MIT License](LICENSE). Feel free to use and modify it in your projects.
 
 ## Support
 
-If you encounter any issues or have suggestions for improvements, please [submit an issue](https://github.com/example/multiwindow-plugin/issues) on GitHub.
-
----
-
-**Note:** Replace `example/multiwindow-plugin` with the actual GitHub repository URL for the MultiWindow Plugin.
+If you encounter any issues or have suggestions for improvements, please [submit an issue](https://github.com/MrDrElliot/Multi-Window-Plugin/issues) on GitHub.
