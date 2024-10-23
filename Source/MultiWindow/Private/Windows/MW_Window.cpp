@@ -50,7 +50,7 @@ void UMW_Window::Tick(float DeltaTime)
 {
 	if(DependencyType == EMultiWidgetDependencyType::Object)
 	{
-		if(DependencyObject.IsValid() == false)
+		if(!DependencyObject.Get())
 		{
 			bCurrentlyShuttingDown = true;
 			UMultiWindowSubsystem::Get().NotifyWindowClosedExternally_Internal(this, true);
