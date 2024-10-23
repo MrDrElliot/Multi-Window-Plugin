@@ -73,23 +73,23 @@ public:
 	static UMW_Window* CreateMultiWindow(UObject* WorldContextObject, TSoftClassPtr<UUserWidget> WidgetClass, FName InTitle = "New Window", EMultiWidgetDependencyType DependencyType = EMultiWidgetDependencyType::World, FVector2D WindowPosition = FVector2D(0.0f, 0.0f), FVector2D WindowSize = FVector2D(800.0f, 600.0f), UObject* DependencyObject = nullptr, EBPSizingRule SizingRule = EBPSizingRule::UserSized, bool bSupportsMaximize = true, bool bSupportsMinimize = true);
 
 	/* Tries to find an active window, and shuts it down */
-	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "MultiWindow", meta = (BlueprintInternalUseOnly = true, MultiWindowCategory = "MultiWindow"))
+	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "MultiWindow", meta = (BlueprintInternalUseOnly = true, MultiWindow))
 	static bool ShutdownWindowByName(FName WindowTitle);
 
 	/* Directly shuts down a window by object reference */
-	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "MultiWindow", meta = (BlueprintInternalUseOnly = true, MultiWindowCategory = "MultiWindow"))
+	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "MultiWindow", meta = (BlueprintInternalUseOnly = true, MultiWindow))
 	static bool ShutdownWindowByObjectReference(UMW_Window* Window);
 
 	/* Adds a UMG widget to a Multi Window */
-	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "MultiWindow", meta = (BlueprintInternalUseOnly = true, MultiWindowCategory = "MultiWindow"))
+	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "MultiWindow", meta = (BlueprintInternalUseOnly = true, MultiWindow))
 	static UMW_Window* AddWidgetToWindow(UMW_Window* InWindow, UUserWidget* InWidget);
 
 	/* Checks if a window is currently registered and active */
-	UFUNCTION(BlueprintPure, Category = "MultiWindow", meta = (BlueprintInternalUseOnly = true, MultiWindowCategory = "MultiWindow"))
+	UFUNCTION(BlueprintPure, Category = "MultiWindow", meta = (BlueprintInternalUseOnly = true, MultiWindow))
 	static bool IsWindowActive(FName Name);
 
 	/* Gets all window objects */
-	UFUNCTION(BlueprintPure, Category = "MultiWindow", meta = (BlueprintInternalUseOnly = true, MultiWindowCategory = "MultiWindow"))
+	UFUNCTION(BlueprintPure, Category = "MultiWindow", meta = (BlueprintInternalUseOnly = true, MultiWindow))
 	static TArray<UMW_Window*> GetActiveWindows();
 
 public:
