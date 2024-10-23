@@ -39,8 +39,11 @@ void UMultiWindowSubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
-UMW_Window* UMultiWindowSubsystem::CreateMultiWindow(FName InTitle, UUserWidget* Widget, EMultiWidgetDependencyType DependencyType, FVector2D WindowPosition, FVector2D WindowSize, UObject* DependencyObject, EBPSizingRule SizingRule, bool bSupportsMaximize, bool bSupportsMinimize)
+UMW_Window* UMultiWindowSubsystem::CreateMultiWindow(UObject* WorldContextObject, TSoftClassPtr<UUserWidget> WidgetClass, FName InTitle, EMultiWidgetDependencyType DependencyType, FVector2D WindowPosition, FVector2D WindowSize, UObject* DependencyObject, EBPSizingRule SizingRule, bool bSupportsMaximize, bool bSupportsMinimize)
 {
+	check(!WidgetClass.IsNull());
+	UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::Assert);
+	
 	UMW_Window* NewWindow = NewObject<UMW_Window>(&Get(), UMW_Window::StaticClass());
 	NewWindow->WindowTitle = InTitle;
 	NewWindow->WindowPosition = WindowPosition;
@@ -54,9 +57,10 @@ UMW_Window* UMultiWindowSubsystem::CreateMultiWindow(FName InTitle, UUserWidget*
 	
 	Get().ActiveWindows.Add(InTitle, NewWindow);
 
-	if(IsValid(Widget))
+	APlayerController* PC = World->GetFirstPlayerController();
+	if(UUserWidget* UserWidget = CreateWidget(PC, WidgetClass.LoadSynchronous()))
 	{
-		AddWidgetToWindow(NewWindow, Widget);
+		AddWidgetToWindow(NewWindow, UserWidget);
 	}
 	
 	return NewWindow;
@@ -94,7 +98,7 @@ bool UMultiWindowSubsystem::IsWindowActive(FName Name)
 
 TArray<UMW_Window*> UMultiWindowSubsystem::GetActiveWindows()
 {
-	TArray<UMW_Window*> Windows;
+	TArray<TObjectPtr<UMW_Window>> Windows;
 	Get().ActiveWindows.GenerateValueArray(Windows);
 
 	return Windows;
