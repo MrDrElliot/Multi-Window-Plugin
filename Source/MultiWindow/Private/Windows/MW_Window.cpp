@@ -45,9 +45,6 @@ UMW_Window::UMW_Window()
 {
 }
 
-UMW_Window::~UMW_Window()
-{
-}
 
 void UMW_Window::Tick(float DeltaTime)
 {
@@ -56,7 +53,7 @@ void UMW_Window::Tick(float DeltaTime)
 		if(DependencyObject.IsValid() == false)
 		{
 			bCurrentlyShuttingDown = true;
-			UMultiWindowSubsystem::Get()->NotifyWindowClosedExternally_Internal(this, true);
+			UMultiWindowSubsystem::Get().NotifyWindowClosedExternally_Internal(this, true);
 		}
 	}
 }
@@ -74,14 +71,14 @@ void UMW_Window::Init()
 
 	SlateWindow->GetOnWindowClosedEvent().AddWeakLambda(this, [this](const TSharedRef<SWindow>& Window)
 	{
-		UMultiWindowSubsystem::Get()->NotifyWindowClosedExternally_Internal(this, true);
+		UMultiWindowSubsystem::Get().NotifyWindowClosedExternally_Internal(this, true);
 	});
 
 	if(DependencyType == EMultiWidgetDependencyType::World)
 	{
 		FGameDelegates::Get().GetEndPlayMapDelegate().AddWeakLambda(this, [this]
 		{
-			UMultiWindowSubsystem::Get()->ShutdownWindowByObjectReference(this);
+			UMultiWindowSubsystem::Get().ShutdownWindowByObjectReference(this);
 		});
 	}
 	

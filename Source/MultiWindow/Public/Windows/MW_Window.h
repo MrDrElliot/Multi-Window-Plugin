@@ -45,11 +45,10 @@ class MULTIWINDOW_API UMW_Window : public UObject, public FTickableGameObject
 public:
 	
 	UMW_Window();
-	~UMW_Window();
 
 
 	UFUNCTION(BlueprintPure)
-	FORCEINLINE bool HasUserWidget() const { return UserWidget.Get(); }
+	FORCEINLINE bool HasUserWidget() const { return UserWidget.Get() != nullptr; }
 
 	UFUNCTION(BlueprintPure)
 	FORCEINLINE FName GetWindowTitle() const { return WindowTitle; }

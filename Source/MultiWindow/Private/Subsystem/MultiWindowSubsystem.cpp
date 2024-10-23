@@ -31,7 +31,7 @@ DEFINE_LOG_CATEGORY(LogMultiWindow);
 
 void UMultiWindowSubsystem::Deinitialize()
 {
-	for (auto KVP : ActiveWindows)
+	for (auto& KVP : ActiveWindows)
 	{
 		KVP.Value->Shutdown();
 	}
@@ -41,7 +41,7 @@ void UMultiWindowSubsystem::Deinitialize()
 
 UMW_Window* UMultiWindowSubsystem::CreateMultiWindow(FName InTitle, UUserWidget* Widget, EMultiWidgetDependencyType DependencyType, FVector2D WindowPosition, FVector2D WindowSize, UObject* DependencyObject, EBPSizingRule SizingRule, bool bSupportsMaximize, bool bSupportsMinimize)
 {
-	UMW_Window* NewWindow = NewObject<UMW_Window>(Get(), UMW_Window::StaticClass());
+	UMW_Window* NewWindow = NewObject<UMW_Window>(&Get(), UMW_Window::StaticClass());
 	NewWindow->WindowTitle = InTitle;
 	NewWindow->WindowPosition = WindowPosition;
 	NewWindow->WindowSize = WindowSize;
@@ -52,7 +52,7 @@ UMW_Window* UMultiWindowSubsystem::CreateMultiWindow(FName InTitle, UUserWidget*
 	NewWindow->DependencyObject = DependencyObject;
 	NewWindow->Init();
 	
-	ActiveWindows.Add(InTitle, NewWindow);
+	Get().ActiveWindows.Add(InTitle, NewWindow);
 
 	if(IsValid(Widget))
 	{
@@ -64,10 +64,10 @@ UMW_Window* UMultiWindowSubsystem::CreateMultiWindow(FName InTitle, UUserWidget*
 
 bool UMultiWindowSubsystem::ShutdownWindowByName(FName WindowTitle)
 {
-	if(UMW_Window* Window = ActiveWindows.FindRef(WindowTitle))
+	if(UMW_Window* Window = Get().ActiveWindows.FindRef(WindowTitle))
 	{
 		Window->Shutdown();
-		ActiveWindows.Remove(WindowTitle);
+		Get().ActiveWindows.Remove(WindowTitle);
 		return true;
 	}
 	return false;
@@ -76,7 +76,7 @@ bool UMultiWindowSubsystem::ShutdownWindowByName(FName WindowTitle)
 bool UMultiWindowSubsystem::ShutdownWindowByObjectReference(UMW_Window* Window)
 {
 	Window->Shutdown();
-	ActiveWindows.Remove(Window->WindowTitle);
+	Get().ActiveWindows.Remove(Window->WindowTitle);
 
 	return true;
 }
@@ -87,15 +87,15 @@ UMW_Window* UMultiWindowSubsystem::AddWidgetToWindow(UMW_Window* InWindow, UUser
 	return InWindow;
 }
 
-bool UMultiWindowSubsystem::IsWindowActive(FName Name) const
+bool UMultiWindowSubsystem::IsWindowActive(FName Name)
 {
-	return ActiveWindows.Contains(Name);
+	return Get().ActiveWindows.Contains(Name);
 }
 
-TArray<UMW_Window*> UMultiWindowSubsystem::GetActiveWindows() const
+TArray<UMW_Window*> UMultiWindowSubsystem::GetActiveWindows()
 {
 	TArray<UMW_Window*> Windows;
-	ActiveWindows.GenerateValueArray(Windows);
+	Get().ActiveWindows.GenerateValueArray(Windows);
 
 	return Windows;
 }
